@@ -5,6 +5,20 @@ body {
     font-family: "Verdana", "Helvetica", "Comic Sans", "sans-serif";
 }
 
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(80,80,120);
+}
+
 p {
     text-align: center;
+}
+
+.weather-boxes {
+    background-color: rgb(40,40,60);
+}
+
+.current {
+    background-color: rgb(60,60,90);
 }

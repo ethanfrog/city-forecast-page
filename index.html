@@ -14,19 +14,47 @@
   </head>
 
   <body>
+    <header>
+      <h1>City Forecast Finder</h1>
+      <h2>Look up a city to see its upcoming weather conditions</h2>
+    </header>
+
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
-          <p>Content 1</p>
+        <div class="col-md-3 search-area">
+          <div class="row">
+            <input placeholder="Enter a city here"></input>
+          </div>
+          <div class="row">
+            <button>Search</button>
+          </div>
+          <div class="row saved-searches">
+            <!-- Previously searched city buttons will go here -->
+          </div>
         </div>
-        <div class="col-md-3">
-          <p>Content 2</p>
-        </div>
-        <div class="col-md-3">
-          <p>Content 3</p>
-        </div>
-        <div class="col-md-3">
-          <p>Content 4</p>
+        <div class="col-md-9 weather-boxes">
+          <div class="row">
+            <div class="col-md-4 current">
+              <p>Weather box 1</p>
+            </div>
+            <div class="col-md-4">
+              <p>Weather box 2</p>
+            </div>
+            <div class="col-md-4">
+              <p>Weather box 3</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <p>Weather box 4</p>
+            </div>
+            <div class="col-md-4">
+              <p>Weather box 5</p>
+            </div>
+            <div class="col-md-4">
+              <p>Weather box 6</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
