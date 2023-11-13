@@ -5,6 +5,8 @@ var savedSearchDiv = $('#saved-searches');
 
 searchButton.on('click', showClick);
 
+createSavedButtons();
+
 function showClick() {
     var searchQuery = searchBar.val();
     // Save new query to local storage
@@ -25,10 +27,12 @@ function newCityButton(cityName) {
 
 //Save new query to local storage
 function saveToLocalStorage(cityName) {
-
+    localStorage.setItem(cityName, JSON.stringify(" "));
 }
 
 //Create buttons from local storage
 function createSavedButtons() {
-
+    for (i = 0; i < localStorage.length; i++) {
+        newCityButton(localStorage.key(i));
+    }
 }
