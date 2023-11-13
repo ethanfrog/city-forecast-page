@@ -20,13 +20,17 @@ function searchForCity() {
     saveToLocalStorage(searchQuery);
     // Create new query button
     newCityButton(searchQuery);
-    // Get the weather of the given location
-    getWeather(searchQuery);
+
+    // Get the weather of the given city
+    //getWeather(searchQuery);
+
+    // Get the 5-day forecast of the given city
+    getForecast(searchQuery);
 }
 
 //Create new query button
 function newCityButton(cityName) {
-    console.log(cityName);
+    //console.log(cityName);
 
     var newButton = $('<button>');
     newButton.html(cityName);
@@ -53,5 +57,36 @@ function getWeather(cityName) {
         })
         .then(function (data) {
             console.log(data);
+        })
+}
+
+function getForecast(cityName) {
+    var city = cityName;
+    var key = "c7cd1d281114a995fffcd325175b8a5e";
+
+    var url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + key + "&units=imperial";
+
+    //console.log(url);
+
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            for (i = 0; i <= 32; i += 8) {
+                forecastData = data.list[i];
+
+                console.log(forecastData);
+
+                var date = forecastData.dt_txt.split(" ")[0];
+                var temp = forecastData.main.temp;
+                var windSpeed = forecastData.wind.speed;
+                var humidity = forecastData.main.humidity;
+
+                console.log(date);
+                console.log(temp);
+                console.log(windSpeed);
+                console.log(humidity);
+            }
         })
 }
