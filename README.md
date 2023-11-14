@@ -2,7 +2,7 @@
 
 ## Description
 
-
+This project is a webpage that allows travellers to search for a city and see its weather conditions. The page shows the city's current weather as well as a 5-day forecast.
 
 ## Installation
 
@@ -10,11 +10,11 @@ N/A
 
 ## Usage
 
+Enter the name of a city into the search bar and click the Search button. Doing so will display that city's weather conditions and create a shortcut button for that city. From there, the user can search for another city or click any of the shortcut buttons to view that city's weather again.
 
+[City Forecast Page](https://ethanfrog.github.io/city-forecast-page/)
 
-[City Forecast Page](https://ethanfrog.github.io/daily-planner/)
-
-![City Forecast Page](./daily-planner.png)
+![City Forecast Page](./assets/images/city-forecast-page.png)
 
 ## Credits
 
