@@ -3,6 +3,9 @@ var searchButton = $('#search-button');
 
 var savedSearchDiv = $('#saved-searches');
 
+//var weatherBlock = $('#weather');
+var forecastBlocks = [$('#forecast-1'), $('#forecast-2'), $('#forecast-3'), $('#forecast-4'), $('#forecast-5')];
+
 createSavedButtons();
 
 searchButton.on('click', searchForCity);
@@ -83,10 +86,12 @@ function getForecast(cityName) {
                 var windSpeed = forecastData.wind.speed;
                 var humidity = forecastData.main.humidity;
 
-                console.log(date);
-                console.log(temp);
-                console.log(windSpeed);
-                console.log(humidity);
+                forecastBlocks[i / 8].html(date + "<br><br>Temperature: " + temp+ "\u00B0 F<br>Wind speed: " + windSpeed + " MPH<br>Humidity: " + humidity + "%");
+
+                //console.log(date);
+                //console.log(temp);
+                //console.log(windSpeed);
+                //console.log(humidity);
             }
         })
 }
