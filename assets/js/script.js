@@ -13,6 +13,10 @@ createSavedButtons();
 
 searchButton.on('click', searchForCity);
 
+$('#saved-searches').on('click', function(event) {
+    console.log(event.target);
+});
+
 //Create buttons from local storage
 function createSavedButtons() {
     for (i = 0; i < localStorage.length; i++) {
@@ -55,6 +59,7 @@ function searchForCity() {
 //Create new query button
 function newCityButton(cityName) {
     var newButton = $('<button>');
+    newButton.attr('class', 'cityButton');
     newButton.html(cityName);
 
     savedSearchDiv.append(newButton);

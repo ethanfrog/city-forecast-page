@@ -22,3 +22,7 @@ p {
 .current {
     background-color: rgb(60,60,90);
 }
+
+.cityButton {
+    background-color: rgb(150,150,150);
+}
