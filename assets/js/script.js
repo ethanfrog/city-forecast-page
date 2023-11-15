@@ -3,7 +3,7 @@ var searchButton = $('#search-button');
 
 var savedSearchDiv = $('#saved-searches');
 
-//var weatherBlock = $('#weather');
+var weatherBlock = $('#weather');
 var forecastBlocks = [$('#forecast-1'), $('#forecast-2'), $('#forecast-3'), $('#forecast-4'), $('#forecast-5')];
 
 createSavedButtons();
@@ -25,7 +25,7 @@ function searchForCity() {
     newCityButton(searchQuery);
 
     // Get the weather of the given city
-    //getWeather(searchQuery);
+    getWeather(searchQuery);
 
     // Get the 5-day forecast of the given city
     getForecast(searchQuery);
@@ -33,8 +33,6 @@ function searchForCity() {
 
 //Create new query button
 function newCityButton(cityName) {
-    //console.log(cityName);
-
     var newButton = $('<button>');
     newButton.html(cityName);
 
@@ -50,9 +48,7 @@ function getWeather(cityName) {
     var city = cityName;
     var key = "c7cd1d281114a995fffcd325175b8a5e";
 
-    var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&per_page=5";
-
-    console.log(url);
+    var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + key + "&units=imperial";
 
     fetch(url)
         .then(function (response) {
@@ -60,6 +56,13 @@ function getWeather(cityName) {
         })
         .then(function (data) {
             console.log(data);
+
+            //var date;
+            var temp = data.main.temp;
+            var windSpeed = data.wind.speed;
+            var humidity = data.main.humidity;
+
+            weatherBlock.html("Temperature: " + temp+ "\u00B0 F<br>Wind speed: " + windSpeed + " MPH<br>Humidity: " + humidity + "%");
         })
 }
 
@@ -69,8 +72,6 @@ function getForecast(cityName) {
 
     var url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + key + "&units=imperial";
 
-    //console.log(url);
-
     fetch(url)
         .then(function (response) {
             return response.json();
@@ -79,19 +80,12 @@ function getForecast(cityName) {
             for (i = 0; i <= 32; i += 8) {
                 forecastData = data.list[i];
 
-                console.log(forecastData);
-
                 var date = forecastData.dt_txt.split(" ")[0];
                 var temp = forecastData.main.temp;
                 var windSpeed = forecastData.wind.speed;
                 var humidity = forecastData.main.humidity;
 
-                forecastBlocks[i / 8].html(date + "<br><br>Temperature: " + temp+ "\u00B0 F<br>Wind speed: " + windSpeed + " MPH<br>Humidity: " + humidity + "%");
-
-                //console.log(date);
-                //console.log(temp);
-                //console.log(windSpeed);
-                //console.log(humidity);
+                forecastBlocks[i / 8].html(date + "<br><br>Temperature: " + temp + "\u00B0 F<br>Wind speed: " + windSpeed + " MPH<br>Humidity: " + humidity + "%");
             }
         })
 }
