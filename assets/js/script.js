@@ -3,7 +3,10 @@ var searchButton = $('#search-button');
 
 var savedSearchDiv = $('#saved-searches');
 
+var weatherHeaderBlock = $('#weatherHeader');
 var weatherBlock = $('#weather');
+
+var forecastHeaderBlock = $('#forecastHeader');
 var forecastBlocks = [$('#forecast-1'), $('#forecast-2'), $('#forecast-3'), $('#forecast-4'), $('#forecast-5')];
 
 createSavedButtons();
@@ -24,8 +27,16 @@ function searchForCity() {
     // Create new query button
     newCityButton(searchQuery);
 
+    // Set the title of the weather block section
+    var currentDateObject = dayjs();
+    var currentDateText = currentDateObject.format('YYYY-MM-DD');
+
+    weatherHeaderBlock.html(searchQuery + "'s Weather on " + currentDateText);
+
     // Get the weather of the given city
     getWeather(searchQuery);
+
+    forecastHeaderBlock.html(searchQuery + "'s 5-Day Forecast");
 
     // Get the 5-day forecast of the given city
     getForecast(searchQuery);
