@@ -14,7 +14,12 @@ createSavedButtons();
 searchButton.on('click', searchForCity);
 
 $('#saved-searches').on('click', function(event) {
-    console.log(event.target);
+    var savedButton = $(event.target);
+    var savedCity = savedButton.html();
+
+    // Get the weather and 5-day forecast of the saved city
+    getWeather(savedCity);
+    getForecast(savedCity);
 });
 
 //Create buttons from local storage
@@ -26,6 +31,7 @@ function createSavedButtons() {
 
 function searchForCity() {
     var searchQuery = searchBar.val();
+
     var createButton = true;
     for (i = 0; i < localStorage.length; i++) {
         if(localStorage.key(i) == searchQuery) {
@@ -41,18 +47,8 @@ function searchForCity() {
     // Save new query to local storage
     saveToLocalStorage(searchQuery);
 
-    // Set the title of the weather block section
-    var currentDateObject = dayjs();
-    var currentDateText = currentDateObject.format('YYYY-MM-DD');
-
-    weatherHeaderBlock.html(searchQuery + "'s Weather on " + currentDateText);
-
-    // Get the weather of the given city
+    // Get the weather and 5-day forecast of the given city
     getWeather(searchQuery);
-
-    forecastHeaderBlock.html(searchQuery + "'s 5-Day Forecast");
-
-    // Get the 5-day forecast of the given city
     getForecast(searchQuery);
 }
 
@@ -71,6 +67,12 @@ function saveToLocalStorage(cityName) {
 }
 
 function getWeather(cityName) {
+    // Set the title of the weather block section
+    var currentDateObject = dayjs();
+    var currentDateText = currentDateObject.format('YYYY-MM-DD');
+
+    weatherHeaderBlock.html(cityName + "'s Weather on " + currentDateText);
+
     var city = cityName;
     var key = "c7cd1d281114a995fffcd325175b8a5e";
 
@@ -93,6 +95,8 @@ function getWeather(cityName) {
 }
 
 function getForecast(cityName) {
+    forecastHeaderBlock.html(cityName + "'s 5-Day Forecast");
+
     var city = cityName;
     var key = "c7cd1d281114a995fffcd325175b8a5e";
 
