@@ -22,10 +22,20 @@ function createSavedButtons() {
 
 function searchForCity() {
     var searchQuery = searchBar.val();
+    var createButton = true;
+    for (i = 0; i < localStorage.length; i++) {
+        if(localStorage.key(i) == searchQuery) {
+            createButton = false;
+        }
+    }
+
+    // Create new query button, if there isn't one already
+    if (createButton) {
+        newCityButton(searchQuery);
+    }
+
     // Save new query to local storage
     saveToLocalStorage(searchQuery);
-    // Create new query button
-    newCityButton(searchQuery);
 
     // Set the title of the weather block section
     var currentDateObject = dayjs();
